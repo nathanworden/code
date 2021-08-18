@@ -9,19 +9,20 @@ class Client {
     // TODO
     // create a new Ethereum-identity with EthCrypto.createIdentity()
     // - should create a Javascript object with a privateKey, publicKey and address
-    this.wallet = 'EthCrypto.createIdentity();
+    this.wallet = EthCrypto.createIdentity();
   }
 
   // Creates a keccak256/SHA3 hash of some data
   hash(data) {
     // TODO
-    return 'hash of data';
+    return EthCrypto.hash.keccak256(data);
   }
 
   // Signs a hash of data with the client's private key
-  sign(data) {
+  sign(message) {
     // TODO
-    return 'signed hash';
+    const messageHash = this.hash(message);
+    return EthCrypto.sign(this.wallet.privateKey, messageHash);
   }
 
   // Verifies that a messageHash is signed by a certain address
