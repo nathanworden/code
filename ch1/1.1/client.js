@@ -27,8 +27,8 @@ class Client {
 
   // Verifies that a messageHash is signed by a certain address
   verify(signature, messageHash, address) {
-    // TODO
-    return 'boolean';
+    const signer = EthCrypto.recover(signature, messageHash);
+    return signer === address;
   }
 }
 
