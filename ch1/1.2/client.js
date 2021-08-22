@@ -28,15 +28,25 @@ class Client {
   // Buys tokens from Paypal
   buy(amount) {
     // Let the user know that they just exchanged off-network goods for network tokens
-    console.log('AN INTERESTING MESSAGE');
+    console.log('You bought ${amount} magic tokens from Paypal');
   }
 
   // Generates new transactions
   generateTx(to, amount, type) {
-    // TODO:
     // create an unsigned transaction
+    const unsignedTx = {
+      type,
+      amount,
+      from: this.wallet.address,
+      to,
+    };
     // create a signature of the transaction
+    const tx = {
+      contents: unsignedTx,
+      sig: this.sign(unsignedTx),
+    };
     // return a Javascript object with the unsigned transaction and transaction signature
+    return tx;
   }
 }
 
